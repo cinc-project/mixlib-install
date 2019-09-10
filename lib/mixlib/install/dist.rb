@@ -3,27 +3,27 @@ module Mixlib
     class Dist
       # This class is not fully implemented, depending it is not recommended!
       # Default project name
-      PROJECT_NAME = "Chef".freeze
+      PROJECT_NAME = "Cinc".freeze
       # Binary repository base endpoint
-      PRODUCT_ENDPOINT = "https://packages.chef.io".freeze
+      PRODUCT_ENDPOINT = "http://packages.cinc.sh".freeze
       # Omnitruck endpoint
-      OMNITRUCK_ENDPOINT = "https://omnitruck.chef.io".freeze
+      OMNITRUCK_ENDPOINT = "https://omnitruck.cinc.sh".freeze
       # Default product name
       DEFAULT_PRODUCT = "chef".freeze
       # Default download page URL
-      DOWNLOADS_PAGE = "https://downloads.chef.io".freeze
+      DOWNLOADS_PAGE = "http://downloads.cinc.sh".freeze
       # Default github org
-      GITHUB_ORG = "chef".freeze
+      GITHUB_ORG = "cinc-project".freeze
       # Bug report URL
-      BUG_URL = "https://github.com/chef/omnitruck/issues/new".freeze
+      BUG_URL = "https://gitlab.com/cinc-project/mixlib-install/issues".freeze
       # Support ticket URL
-      SUPPORT_URL = "https://www.chef.io/support/tickets".freeze
+      SUPPORT_URL = "https://gitlab.com/groups/cinc-project/-/issues".freeze
       # Resources URL
-      RESOURCES_URL = "https://www.chef.io/support".freeze
+      RESOURCES_URL = "https://www.cinc.sh/support".freeze
       # MacOS volume name
-      MACOS_VOLUME = "chef_software".freeze
+      MACOS_VOLUME = "cinc_project".freeze
       # Windows install directory name
-      WINDOWS_INSTALL_DIR = "opscode".freeze
+      WINDOWS_INSTALL_DIR = "cinc-project".freeze
       # Linux install directory name
       LINUX_INSTALL_DIR = "/opt"
     end
