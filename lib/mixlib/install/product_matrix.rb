@@ -17,4 +17,9 @@ PRODUCT_MATRIX = Mixlib::Install::ProductMatrix.new do
     product_name "Cinc Auditor"
     package_name "cinc-auditor"
   end
+
+  product "cinc-workstation" do
+    product_name "Cinc Workstation"
+    package_name "cinc-workstation"
+  end
 end
