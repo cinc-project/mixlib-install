@@ -22,4 +22,13 @@ PRODUCT_MATRIX = Mixlib::Install::ProductMatrix.new do
     product_name "Cinc Workstation"
     package_name "cinc-workstation"
   end
+
+  product "cinc-server" do
+    product_name "Cinc Server"
+    package_name "cinc-server"
+    omnibus_project "cinc-server"
+    ctl_command "cinc-server-ctl"
+    config_file "/etc/cinc-project/cinc-server.rb"
+    install_path "/opt/cinc-project"
+  end
 end
