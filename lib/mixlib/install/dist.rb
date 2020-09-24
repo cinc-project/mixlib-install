@@ -23,7 +23,7 @@ module Mixlib
       # MacOS volume name
       MACOS_VOLUME = "cinc_project".freeze
       # Windows install directory name
-      WINDOWS_INSTALL_DIR = "cinc".freeze
+      WINDOWS_INSTALL_DIR = "cinc-project".freeze
     end
   end
 end
