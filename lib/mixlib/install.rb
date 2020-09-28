@@ -25,6 +25,7 @@ require_relative "install/options"
 require_relative "install/generator"
 require_relative "install/generator/bourne"
 require_relative "install/generator/powershell"
+require_relative "install/dist"
 
 module Mixlib
   class Install
