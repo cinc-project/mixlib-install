@@ -13,7 +13,7 @@ module Mixlib
       # Trial API endpoint
       TRIAL_API_ENDPOINT = "".freeze
       # Default product name
-      DEFAULT_PRODUCT = "chef".freeze
+      DEFAULT_PRODUCT = "cinc".freeze
       # Default download page URL
       DOWNLOADS_PAGE = "http://downloads.cinc.sh".freeze
       # Default github org
