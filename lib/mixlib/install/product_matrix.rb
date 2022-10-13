@@ -31,4 +31,10 @@ PRODUCT_MATRIX = Mixlib::Install::ProductMatrix.new do
     config_file "/etc/cinc-project/cinc-server.rb"
     install_path "/opt/cinc-project"
   end
+
+  product "omnibus-toolchain" do
+    product_name "Omnibus Toolchain"
+    package_name "omnibus-toolchain"
+    downloads_product_page_url :not_available
+  end
 end
