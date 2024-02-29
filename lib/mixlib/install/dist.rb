@@ -5,13 +5,13 @@ module Mixlib
       # Default project name
       PROJECT_NAME = "Cinc".freeze
       # Binary repository base endpoint
-      PRODUCT_ENDPOINT = "http://packages.cinc.sh".freeze
+      PRODUCT_ENDPOINT = "https://packages.cinc.sh".freeze
       # Omnitruck endpoint
       OMNITRUCK_ENDPOINT = "https://omnitruck.cinc.sh".freeze
       # Default product name
       DEFAULT_PRODUCT = "cinc".freeze
       # Default download page URL
-      DOWNLOADS_PAGE = "http://downloads.cinc.sh".freeze
+      DOWNLOADS_PAGE = "https://downloads.cinc.sh".freeze
       # Default github org
       GITHUB_ORG = "cinc-project".freeze
       # Bug report URL
