@@ -35,6 +35,7 @@ module Mixlib
         powerpc
         ppc64
         ppc64le
+        riscv64
         s390x
         sparc
         universal
