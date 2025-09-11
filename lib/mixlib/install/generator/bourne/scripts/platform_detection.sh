@@ -157,6 +157,9 @@ case $platform in
     # FIXME:  "el" is deprecated, should use "redhat"
     platform_version=$major_version
     ;;
+  "rocky")
+    platform_version=$major_version
+    ;;
   "debian")
     if [ "$major_version" = "5" ]; then
       # This is here for potential back-compat.
