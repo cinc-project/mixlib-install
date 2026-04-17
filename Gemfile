@@ -9,7 +9,11 @@ group :test do
   gem "rake"
   gem "rspec"
   gem "webrick"
-  gem "webmock", "~> 3.4"
+  if RUBY_VERSION >= "3.4.0"
+    gem "webmock", ">= 3.24", "< 4.0"
+  else
+    gem "webmock", "~> 3.4"
+  end
   if RUBY_VERSION < "2.6.0"
     gem "climate_control", "= 0.1.0"
     gem "mixlib-shellout", "= 3.2.5"
@@ -42,9 +46,11 @@ group :test do
     gem "vcr"
   elsif RUBY_VERSION >= "3.4.0"
     gem "base64"
+    gem "bigdecimal"
     gem "climate_control", "~> 1.0"
     gem "racc"
-    gem "vcr"
+    gem "rexml"
+    gem "vcr", ">= 6.2", "< 7.0"
   elsif RUBY_VERSION >= "3.3.0"
     gem "climate_control", "~> 1.0"
     gem "racc"
@@ -67,8 +73,10 @@ group :debug do
   elsif RUBY_VERSION < "3.1.0"
     gem "byebug", "< 12.0" # Dep of pry-bybug
     gem "pry-byebug"
-  else
+  elsif RUBY_VERSION < "3.3.0"
     gem "pry-byebug"
+  else
+    gem "debug"
   end
   gem "rb-readline"
 end

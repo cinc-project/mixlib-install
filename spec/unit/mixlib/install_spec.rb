@@ -47,16 +47,16 @@ context "Mixlib::Install" do
         end
       end
 
-      context "with product name chef" do
-        let(:product_name) { "chef" }
+      context "with product name cinc" do
+        let(:product_name) { "cinc" }
 
         it "should report version correctly" do
           expect(installer.current_version).to eq("12.4.3")
         end
       end
 
-      context "with product name chef" do
-        let(:product_name) { "chefdk" }
+      context "with product name cinc-workstation" do
+        let(:product_name) { "cinc-workstation" }
 
         it "should report version correctly" do
           expect(installer.current_version).to eq("0.7.0")
@@ -65,7 +65,7 @@ context "Mixlib::Install" do
     end
 
     context "when product is not installed" do
-      let(:product_name) { "chef" }
+      let(:product_name) { "cinc" }
 
       before do
         expect(File).to receive(:exist?).with(version_manifest_file).and_return(false)
@@ -73,28 +73,6 @@ context "Mixlib::Install" do
 
       it "should report version as nil" do
         expect(installer.current_version).to eq(nil)
-      end
-    end
-
-    context "with chef-ice product" do
-      let(:product_name) { "chef-ice" }
-      let(:version_manifest_file) { "/hab/pkgs/chef/chef-infra-client/*/*/version-manifest.json" }
-
-      it "should use Habitat install directory path" do
-        expect(installer.root).to eq("/hab/pkgs/chef/chef-infra-client/*/*")
-      end
-
-      context "when chef-ice is installed" do
-        before do
-          expect(File).to receive(:exist?).with(version_manifest_file).and_return(true)
-          expect(File).to receive(:read).with(version_manifest_file).and_wrap_original do |m, path|
-            m.call(File.join(VERSION_MANIFEST_DIR, "/opt/chef/version-manifest.json"))
-          end
-        end
-
-        it "should report version correctly" do
-          expect(installer.current_version).to eq("12.4.3")
-        end
       end
     end
   end
@@ -105,7 +83,7 @@ context "Mixlib::Install" do
     end
 
     context "with nil as current_version" do
-      let(:product_name) { "chefdk" }
+      let(:product_name) { "cinc-workstation" }
       let(:channel) { :stable }
       let(:product_version) { :latest }
       let(:current_version) { nil }
@@ -116,7 +94,7 @@ context "Mixlib::Install" do
     end
 
     context "with :latest, upgrade exists, :stable channel" do
-      let(:product_name) { "chefdk" }
+      let(:product_name) { "cinc-workstation" }
       let(:channel) { :stable }
       let(:product_version) { :latest }
       let(:current_version) { "0.4.0" }
@@ -127,10 +105,14 @@ context "Mixlib::Install" do
     end
 
     context "with specific version lower than current, :stable channel" do
-      let(:product_name) { "chefdk" }
+      let(:product_name) { "cinc" }
       let(:channel) { :stable }
-      let(:product_version) { "0.3.0" }
-      let(:current_version) { "0.4.0" }
+      let(:product_version) { "15.1.36" }
+      let(:current_version) { "15.2.20" }
+
+      before do
+        allow(installer).to receive(:artifact_info).and_return(double(version: product_version))
+      end
 
       it "should report upgrade available" do
         expect(installer.upgrade_available?).to eq(false)
@@ -138,10 +120,14 @@ context "Mixlib::Install" do
     end
 
     context "with specific version higher than current, :stable channel" do
-      let(:product_name) { "chefdk" }
+      let(:product_name) { "cinc" }
       let(:channel) { :stable }
-      let(:product_version) { "0.7.0" }
-      let(:current_version) { "0.4.0" }
+      let(:product_version) { "15.2.20" }
+      let(:current_version) { "15.1.36" }
+
+      before do
+        allow(installer).to receive(:artifact_info).and_return(double(version: product_version))
+      end
 
       it "should report upgrade available" do
         expect(installer.upgrade_available?).to eq(true)
@@ -149,7 +135,7 @@ context "Mixlib::Install" do
     end
 
     context "with specific platform options" do
-      let(:product_name) { "chefdk" }
+      let(:product_name) { "cinc-workstation" }
       let(:platform) { "ubuntu" }
       let(:platform_version) { "14.04" }
       let(:architecture) { "x86_64" }
@@ -163,18 +149,16 @@ context "Mixlib::Install" do
 
   context "install_sh" do
     let(:base_url) { nil }
-    let(:license_id) { nil }
 
     let(:install_sh) do
       options = {}.tap do |opt|
         opt[:base_url] = base_url if base_url
-        opt[:license_id] = license_id if license_id
       end
       Mixlib::Install.install_sh(options)
     end
 
     it "should render a script with cli parameters" do
-      expect(install_sh).to include("while getopts pnv:b:c:f:P:d:s:l:a:L: opt")
+      expect(install_sh).to include("while getopts")
     end
 
     context "with custom base_url" do
@@ -186,73 +170,16 @@ context "Mixlib::Install" do
     end
 
     it "should render with default base_url if one is not given" do
-      expect(install_sh).to include("https://omnitruck.chef.io")
-    end
-
-    context "with license_id" do
-      let(:license_id) { "test-license-123" }
-
-      it "should pre-set license_id variable" do
-        expect(install_sh).to include('license_id="test-license-123"')
-      end
-    end
-
-    context "without license_id" do
-      it "should not include license_id pre-set" do
-        # Check that license_id is not assigned a default value
-        expect(install_sh).not_to match(/^license_id=".+"$/)
-      end
-    end
-
-    context "with trial license_id" do
-      let(:license_id) { "free-trial-abc-123" }
-
-      it "defaults channel to stable with warning" do
-        expect do
-          options = { license_id: license_id, channel: :current }
-          script = Mixlib::Install.install_sh(options)
-          expect(script).to include('license_id="free-trial-abc-123"')
-        end.to output(/WARNING: Trial API only supports 'stable' channel/).to_stderr
-      end
-
-      it "defaults version to latest with warning" do
-        expect do
-          options = { license_id: license_id, version: "18.5.0" }
-          script = Mixlib::Install.install_sh(options)
-          expect(script).to include('license_id="free-trial-abc-123"')
-        end.to output(/WARNING: Trial API only supports 'latest' version/).to_stderr
-      end
-
-      it "does not warn when stable and latest already set" do
-        expect do
-          options = { license_id: license_id, channel: :stable, version: :latest }
-          script = Mixlib::Install.install_sh(options)
-          expect(script).to include('license_id="free-trial-abc-123"')
-        end.not_to output.to_stderr
-      end
-    end
-
-    context "with commercial license_id" do
-      let(:license_id) { "commercial-xyz-789" }
-
-      it "does not default channel or version" do
-        expect do
-          options = { license_id: license_id, channel: :current, version: "18.5.0" }
-          script = Mixlib::Install.install_sh(options)
-          expect(script).to include('license_id="commercial-xyz-789"')
-        end.not_to output.to_stderr
-      end
+      expect(install_sh).to include("https://omnitruck.cinc.sh")
     end
   end
 
   context "install_ps1" do
     let(:base_url) { nil }
-    let(:license_id) { nil }
 
     let(:install_ps1) do
       options = {}.tap do |opt|
         opt[:base_url] = base_url if base_url
-        opt[:license_id] = license_id if license_id
       end
       Mixlib::Install.install_ps1(options)
     end
@@ -271,67 +198,12 @@ context "Mixlib::Install" do
     end
 
     it "should render with default base_url if one is not given" do
-      expect(install_ps1).to include("https://omnitruck.chef.io")
-    end
-
-    context "with license_id" do
-      let(:license_id) { "trial-license-456" }
-
-      it "should include license_id in install command" do
-        expect(install_ps1).to include("$license_id = 'trial-license-456'")
-      end
-    end
-
-    context "without license_id" do
-      it "should not include license_id in install command" do
-        # Check that $license_id is not assigned a default value
-        expect(install_ps1).not_to match(/\$license_id = '[^']+'$/)
-      end
-    end
-
-    context "with trial license_id" do
-      let(:license_id) { "trial-xyz-456" }
-
-      it "defaults channel to stable with warning" do
-        expect do
-          options = { license_id: license_id, channel: :unstable }
-          script = Mixlib::Install.install_ps1(options)
-          expect(script).to include("$license_id = 'trial-xyz-456'")
-        end.to output(/WARNING: Trial API only supports 'stable' channel/).to_stderr
-      end
-
-      it "defaults version to latest with warning" do
-        expect do
-          options = { license_id: license_id, version: "17.2.0" }
-          script = Mixlib::Install.install_ps1(options)
-          expect(script).to include("$license_id = 'trial-xyz-456'")
-        end.to output(/WARNING: Trial API only supports 'latest' version/).to_stderr
-      end
-
-      it "does not warn when stable and latest already set" do
-        expect do
-          options = { license_id: license_id, channel: :stable, version: :latest }
-          script = Mixlib::Install.install_ps1(options)
-          expect(script).to include("$license_id = 'trial-xyz-456'")
-        end.not_to output.to_stderr
-      end
-    end
-
-    context "with commercial license_id" do
-      let(:license_id) { "commercial-abc-123" }
-
-      it "does not default channel or version" do
-        expect do
-          options = { license_id: license_id, channel: :current, version: "17.5.0" }
-          script = Mixlib::Install.install_ps1(options)
-          expect(script).to include("$license_id = 'commercial-abc-123'")
-        end.not_to output.to_stderr
-      end
+      expect(install_ps1).to include("https://omnitruck.cinc.sh")
     end
   end
 
   context "self.detect_platform" do
-    let(:product_name) { "chef" }
+    let(:product_name) { "cinc" }
     let(:platform_info) { Mixlib::Install.detect_platform }
 
     it "should return platform info" do
@@ -343,7 +215,7 @@ context "Mixlib::Install" do
   end
 
   context "detect_platform" do
-    let(:product_name) { "chef" }
+    let(:product_name) { "cinc" }
 
     it "should set options" do
       installer.detect_platform
@@ -373,17 +245,23 @@ context "Mixlib::Install" do
     end
   end
 
-  context "available_versions", :vcr do
-    let(:product_name) { "chef" }
+  context "available_versions" do
+    let(:product_name) { "cinc" }
     let(:channel) { :stable }
+    let(:expected_versions) { %w{15.1.36 15.2.20 15.3.14} }
+
+    before do
+      allow(Mixlib::Install::Backend).to receive(:available_versions).and_return(expected_versions)
+    end
 
     shared_examples_for "the correct available_versions" do
       it "is an Array" do
         expect(versions).to be_a Array
+        expect(versions).not_to be_empty
       end
 
       it "has expected version" do
-        expect(versions).to include "12.0.3"
+        expect(versions).to include("15.1.36")
       end
     end
 
@@ -401,7 +279,7 @@ context "Mixlib::Install" do
   end
 
   describe "#download_artifact" do
-    let(:product_name) { "chefdk" }
+    let(:product_name) { "cinc-workstation" }
 
     context "when platform options are not set" do
       it "will raise an error" do

@@ -54,22 +54,16 @@ describe Mixlib::Install::ProductMatrix do
 
   describe "#lookup" do
     context "with existing product" do
-      it "returns the product for chef" do
-        product = PRODUCT_MATRIX.lookup("chef")
+      it "returns the product for cinc" do
+        product = PRODUCT_MATRIX.lookup("cinc")
         expect(product).not_to be_nil
-        expect(product.product_name).to eq("Chef Infra Client")
+        expect(product.product_name).to eq("Cinc Client")
       end
 
-      it "returns the product for chef-server" do
-        product = PRODUCT_MATRIX.lookup("chef-server")
+      it "returns the product for cinc-server" do
+        product = PRODUCT_MATRIX.lookup("cinc-server")
         expect(product).not_to be_nil
-        expect(product.product_name).to eq("Chef Infra Server")
-      end
-
-      it "returns the product for chef-ice" do
-        product = PRODUCT_MATRIX.lookup("chef-ice")
-        expect(product).not_to be_nil
-        expect(product.product_name).to eq("Chef Infra Client Enterprise")
+        expect(product.product_name).to eq("Cinc Server")
       end
     end
 
@@ -81,7 +75,7 @@ describe Mixlib::Install::ProductMatrix do
 
     context "with version parameter" do
       it "returns product with version context" do
-        product = PRODUCT_MATRIX.lookup("chef", "17.0.0")
+        product = PRODUCT_MATRIX.lookup("cinc", "17.0.0")
         expect(product).not_to be_nil
       end
     end
@@ -91,10 +85,9 @@ describe Mixlib::Install::ProductMatrix do
     it "returns an array of all product keys" do
       products = PRODUCT_MATRIX.products
       expect(products).to be_an(Array)
-      expect(products).to include("chef")
-      expect(products).to include("chef-server")
-      expect(products).to include("chef-ice")
-      expect(products).to include("automate")
+      expect(products).to include("cinc")
+      expect(products).to include("cinc-server")
+      expect(products).to include("omnibus-toolchain")
     end
 
     it "does not include duplicate products" do
@@ -107,8 +100,8 @@ describe Mixlib::Install::ProductMatrix do
     it "returns products available on downloads site" do
       products = PRODUCT_MATRIX.products_available_on_downloads_site
       expect(products).to be_a(Hash)
-      expect(products.keys).to include("chef")
-      expect(products.keys).to include("chef-server")
+      expect(products.keys).to include("cinc")
+      expect(products.keys).to include("cinc-server")
     end
 
     it "does not include products with :not_available downloads URL" do
@@ -119,111 +112,39 @@ describe Mixlib::Install::ProductMatrix do
   end
 
   describe "product attributes" do
-    context "for chef product" do
-      let(:chef_product) { PRODUCT_MATRIX.lookup("chef") }
+    context "for cinc product" do
+      let(:cinc_product) { PRODUCT_MATRIX.lookup("cinc") }
 
       it "has correct product_name" do
-        expect(chef_product.product_name).to eq("Chef Infra Client")
+        expect(cinc_product.product_name).to eq("Cinc Client")
       end
 
       it "has correct package_name" do
-        expect(chef_product.package_name).to eq("chef")
+        expect(cinc_product.package_name).to eq("cinc")
       end
 
       it "does not have ctl_command" do
-        expect(chef_product.ctl_command).to be_nil
-      end
-
-      it "has correct downloads_product_page_url" do
-        expect(chef_product.downloads_product_page_url).to eq("https://downloads.chef.io/chef")
-      end
-
-      it "has correct github_repo" do
-        expect(chef_product.github_repo).to eq("chef/chef")
+        expect(cinc_product.ctl_command).to be_nil
       end
     end
 
-    context "for chef-ice product" do
-      let(:chef_ice_product) { PRODUCT_MATRIX.lookup("chef-ice") }
+    context "for cinc-server product" do
+      let(:cinc_server_product) { PRODUCT_MATRIX.lookup("cinc-server") }
 
       it "has correct product_name" do
-        expect(chef_ice_product.product_name).to eq("Chef Infra Client Enterprise")
-      end
-
-      it "has correct package_name" do
-        expect(chef_ice_product.package_name).to eq("chef-ice")
-      end
-    end
-
-    context "for chef-server product" do
-      let(:chef_server_product) { PRODUCT_MATRIX.lookup("chef-server") }
-
-      it "has correct product_name" do
-        expect(chef_server_product.product_name).to eq("Chef Infra Server")
-      end
-
-      it "has correct omnibus_project" do
-        expect(chef_server_product.omnibus_project).to eq("chef-server")
-      end
-
-      it "has correct ctl_command" do
-        expect(chef_server_product.ctl_command).to eq("chef-server-ctl")
-      end
-
-      it "has versioned package_name" do
-        # Should be chef-server-core for most versions
-        expect(chef_server_product.package_name).to be_a(String)
-      end
-    end
-
-    context "for automate product" do
-      let(:automate_product) { PRODUCT_MATRIX.lookup("automate") }
-
-      it "has correct product_name" do
-        expect(automate_product.product_name).to eq("Chef Automate")
-      end
-
-      it "has versioned package_name" do
-        # Should return delivery for older versions, automate for newer
-        expect(automate_product.package_name).to be_a(String)
-      end
-
-      it "has versioned ctl_command" do
-        # Should return delivery-ctl for older versions, automate-ctl for newer
-        expect(automate_product.ctl_command).to be_a(String)
-      end
-
-      it "has config_file" do
-        expect(automate_product.config_file).to eq("/etc/delivery/delivery.rb")
+        expect(cinc_server_product.product_name).to eq("Cinc Server")
       end
     end
   end
 
   describe "version-specific attributes" do
-    context "when package_name is a proc" do
-      let(:automate_product) { PRODUCT_MATRIX.lookup("automate") }
-
-      it "evaluates package_name based on version" do
-        # For versions < 0.7.0, should be "delivery"
-        # For versions >= 0.7.0, should be "automate"
-        expect(automate_product.package_name).to be_a(String)
-      end
-    end
-
-    context "when ctl_command is a proc" do
-      let(:automate_product) { PRODUCT_MATRIX.lookup("automate") }
-
-      it "evaluates ctl_command based on version" do
-        expect(automate_product.ctl_command).to be_a(String)
-      end
-    end
   end
 
   describe "#lookup as accessor" do
     it "can be used to retrieve products" do
-      chef_product = PRODUCT_MATRIX.lookup("chef")
-      expect(chef_product).not_to be_nil
-      expect(chef_product.product_name).to eq("Chef Infra Client")
+      cinc_product = PRODUCT_MATRIX.lookup("cinc")
+      expect(cinc_product).not_to be_nil
+      expect(cinc_product.product_name).to eq("Cinc Client")
     end
   end
 

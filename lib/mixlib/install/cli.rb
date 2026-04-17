@@ -71,9 +71,6 @@ If no earlier version is found the earliest version available will be set.",
       option :attributes,
         desc: "Print artifact attributes",
         type: :boolean
-      option :license_id,
-        desc: "License ID for commercial API downloads",
-        aliases: ["-L"]
 
       def download(product_name)
         # Set minimum options
@@ -86,8 +83,6 @@ If no earlier version is found the earliest version available will be set.",
         }.tap do |opt|
           opt[:platform] = options[:platform] if options[:platform]
           opt[:platform_version] = options[:platform_version] if options[:platform_version]
-          # Use license_id from options if provided, otherwise check CHEF_LICENSE_KEY env var
-          opt[:license_id] = options[:license_id] || ENV["CHEF_LICENSE_KEY"]
         end
 
         # auto detect platform options if not configured

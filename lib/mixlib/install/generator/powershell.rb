@@ -46,8 +46,8 @@ module Mixlib
         def install_command
           install_project_module = []
           install_project_module << get_script("helpers.ps1", user_agent_headers: options.user_agent_headers)
-          install_project_module << get_script("get_project_metadata.ps1", license_id: options.license_id, base_url: options.base_url)
-          install_project_module << get_script("install_project.ps1", license_id: options.license_id)
+          install_project_module << get_script("get_project_metadata.ps1", base_url: options.base_url)
+          install_project_module << get_script("install_project.ps1")
           install_command = []
           install_command << ps1_modularize(install_project_module.join("\n"), "Installer-Module")
           install_command << render_command
@@ -72,7 +72,6 @@ module Mixlib
           cmd << " -channel #{options.channel}"
           cmd << " -architecture #{options.architecture}" if options.architecture
           cmd << " -base_server_uri '#{options.base_url}'" if options.base_url && !options.base_url.to_s.empty?
-          cmd << " -license_id #{options.license_id}" if options.license_id && !options.license_id.to_s.empty?
           cmd << install_command_params if options.install_command_options
           cmd << "\n"
         end

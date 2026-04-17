@@ -49,7 +49,7 @@ http_interactions:
       encoding: UTF-8
       string: "<html>\r\n<head><title>404 Not Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>404
         Not Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Sep 2016 19:20:40 GMT
 - request:
     method: get
@@ -267,7 +267,7 @@ http_interactions:
           } ],
           "uri" : "https://packages.chef.io/api/build/chef"
         }
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Sep 2016 20:16:47 GMT
 - request:
     method: get
@@ -318,7 +318,7 @@ http_interactions:
       encoding: UTF-8
       string: "<html>\r\n<head><title>404 Not Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>404
         Not Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Sep 2016 20:16:47 GMT
 - request:
     method: get
@@ -2251,7 +2251,7 @@ http_interactions:
           "total" : 39
         }
         }
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Sep 2016 20:16:47 GMT
 - request:
     method: get
@@ -2309,7 +2309,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 16:26:34 GMT
 - request:
     method: get
@@ -2367,7 +2367,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:22 GMT
 - request:
     method: get
@@ -2425,7 +2425,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:22 GMT
 - request:
     method: get
@@ -2483,7 +2483,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2541,7 +2541,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2599,7 +2599,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2657,7 +2657,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2715,7 +2715,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2773,7 +2773,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:23 GMT
 - request:
     method: get
@@ -2831,7 +2831,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:24 GMT
 - request:
     method: get
@@ -2889,7 +2889,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:24 GMT
 - request:
     method: get
@@ -2947,7 +2947,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:24 GMT
 - request:
     method: get
@@ -3005,7 +3005,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:24 GMT
 - request:
     method: get
@@ -3063,7 +3063,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3121,7 +3121,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3179,7 +3179,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3209,7 +3209,7 @@ http_interactions:
       - 1.1 varnish
       - 1.1 varnish
       Fastly-Debug-Digest:
-      - 0158dd62124268342edd0967205a3e6febb33db74f6727d87fc22023498e1d93
+      - '0158dd62124268342edd0967205a3e6febb33db74f6727d87fc22023498e1d93'
       Content-Length:
       - '80'
       Accept-Ranges:
@@ -3237,7 +3237,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3295,7 +3295,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3353,7 +3353,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:25 GMT
 - request:
     method: get
@@ -3411,7 +3411,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:26 GMT
 - request:
     method: get
@@ -3469,7 +3469,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:26 GMT
 - request:
     method: get
@@ -3527,7 +3527,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:26 GMT
 - request:
     method: get
@@ -3585,7 +3585,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:26 GMT
 - request:
     method: get
@@ -3643,7 +3643,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:26 GMT
 - request:
     method: get
@@ -3701,7 +3701,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -3759,7 +3759,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -3817,7 +3817,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -3875,7 +3875,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -3933,7 +3933,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -3991,7 +3991,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:27 GMT
 - request:
     method: get
@@ -4049,7 +4049,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4107,7 +4107,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4165,7 +4165,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4223,7 +4223,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4281,7 +4281,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4339,7 +4339,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:28 GMT
 - request:
     method: get
@@ -4397,7 +4397,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:29 GMT
 - request:
     method: get
@@ -4455,7 +4455,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:29 GMT
 - request:
     method: get
@@ -4513,7 +4513,7 @@ http_interactions:
             "message" : "File not found."
           } ]
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 04 Oct 2016 17:02:29 GMT
 - request:
     method: get
@@ -18585,7 +18585,7 @@ http_interactions:
           "total" : 694
         }
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 22 Nov 2016 10:57:34 GMT
 - request:
     method: get
@@ -21347,6 +21347,47 @@ http_interactions:
           "total" : 45
         }
         }
-    http_version: 
+    http_version:
   recorded_at: Tue, 22 Nov 2016 10:57:34 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: get
+    uri: https://packages.cinc.sh/api/v1/unstable/cinc/versions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - mixlib-install/3.16.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 17 Apr 2026 23:09:15 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Fri, 20 Mar 2026 17:23:45 GMT
+      Etag:
+      - '"17-64d77f27dddc3"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '23'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "results": [
+
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 17 Apr 2026 23:09:15 GMT
+recorded_with: VCR 5.0.0

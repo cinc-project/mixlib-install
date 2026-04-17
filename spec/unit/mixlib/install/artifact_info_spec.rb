@@ -28,8 +28,8 @@ describe Mixlib::Install::ArtifactInfo do
       md5: "1234567890abcdef",
       platform: "ubuntu",
       platform_version: "20.04",
-      product_description: "Chef Infra Client",
-      product_name: "chef",
+      product_description: "Cinc Infra Client",
+      product_name: "cinc",
       sha1: "abcdef1234567890",
       sha256: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
       software_dependencies: [],
@@ -48,8 +48,8 @@ describe Mixlib::Install::ArtifactInfo do
       expect(artifact.md5).to eq("1234567890abcdef")
       expect(artifact.platform).to eq("ubuntu")
       expect(artifact.platform_version).to eq("20.04")
-      expect(artifact.product_description).to eq("Chef Infra Client")
-      expect(artifact.product_name).to eq("chef")
+      expect(artifact.product_description).to eq("Cinc Infra Client")
+      expect(artifact.product_name).to eq("cinc")
       expect(artifact.sha1).to eq("abcdef1234567890")
       expect(artifact.sha256).to eq("1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")
       expect(artifact.software_dependencies).to eq([])

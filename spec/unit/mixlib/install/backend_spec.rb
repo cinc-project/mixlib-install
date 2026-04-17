@@ -27,9 +27,6 @@ context "Mixlib::Install::Backend", :vcr do
   let(:platform_version) { nil }
   let(:architecture) { nil }
 
-  let(:expected_info) { nil }
-  let(:expected_protocol) { "https://" }
-
   let(:info) do
     Mixlib::Install.new(
       channel: channel,
@@ -48,35 +45,6 @@ context "Mixlib::Install::Backend", :vcr do
     ).available_versions
   end
 
-  def check_url(url)
-    if expected_info && !expected_info.key?(:url)
-      expect(url).to match /#{expected_info[:url]}/
-    elsif url.include?("freebsd/9") ||
-        url.include?("el/5") ||
-        url.include?("solaris2/5.10") ||
-        url.include?("solaris2/5.9")
-      expect(url).to include(Mixlib::Install::Backend::PackageRouter::COMPAT_DOWNLOAD_URL_ENDPOINT)
-    else
-      expect(url).to include(Mixlib::Install::Dist::PRODUCT_ENDPOINT)
-    end
-  end
-
-  def check_sha256(sha256)
-    if expected_info && expected_info.key?(:sha256)
-      expect(sha256).to match expected_info[:sha256] # match or eq
-    else
-      expect(sha256).to match(/^[0-9a-f]{64}$/)
-    end
-  end
-
-  def check_version(version)
-    if expected_info && expected_info.key?(:version)
-      expect(version).to match expected_info[:version]
-    else
-      expect(version).to match(/\d+.\d+.\d+/)
-    end
-  end
-
   def check_platform_info(data)
     expect(data.platform).to eq(platform)
     expect(data.platform_version).to eq(platform_version)
@@ -85,9 +53,10 @@ context "Mixlib::Install::Backend", :vcr do
 
   shared_examples_for "the right artifact info" do
     it "has the right properties" do
-      check_url(info.url)
-      check_sha256(info.sha256)
-      check_version(info.version)
+      expect(info.url).to include(Mixlib::Install::Dist::PRODUCT_ENDPOINT)
+      expect(info.url).to include("/files/")
+      expect(info.sha256).to match(/^[0-9a-f]{64}$/)
+      expect(info.version).to match(/\d+\.\d+\.\d+/)
     end
 
     it "has the right platform info" do
@@ -108,154 +77,74 @@ context "Mixlib::Install::Backend", :vcr do
 
     it "has the right properties for artifacts" do
       info.each do |artifact_info|
-        check_url(artifact_info.url)
-        check_sha256(artifact_info.sha256)
-        check_version(artifact_info.version)
+        expect(artifact_info.url).to include(Mixlib::Install::Dist::PRODUCT_ENDPOINT)
+        expect(artifact_info.url).to include("/files/")
+        expect(artifact_info.sha256).to match(/^[0-9a-f]{64}$/)
+        expect(artifact_info.version).to match(/\d+\.\d+\.\d+/)
       end
     end
   end
 
-  context "for stable channel with specific version" do
-    let(:product_name) { "chef" }
+  context "for stable channel with latest version" do
+    let(:product_name) { "cinc" }
     let(:channel) { :stable }
-    let(:product_version) { "12.2.1" }
+    let(:product_version) { :latest }
 
     context "without platform info" do
-      let(:expected_info) do
-        {
-          version: "12.2.1",
-        }
-      end
-
       it_behaves_like "the right artifact list info"
     end
 
     context "with platform info" do
-      let(:platform) { "mac_os_x" }
-      let(:platform_version) { "10.10" }
+      let(:platform) { "ubuntu" }
+      let(:platform_version) { "20.04" }
       let(:architecture) { "x86_64" }
-
-      let(:expected_info) do
-        {
-          url: "https://packages.chef.io/stable/mac_os_x/10.10/chef-12.2.1-1.dmg",
-          sha256: "53034d6e1eea0028666caee43b99f43d2ca9dd24b260bc53ae5fad1075e83923",
-          version: "12.2.1",
-        }
-      end
 
       it_behaves_like "the right artifact info"
     end
   end
 
-  [:stable, :current, :unstable].each do |channel|
+  context "for stable channel with :latest" do
+    let(:product_name) { "cinc" }
+    let(:channel) { :stable }
+    let(:product_version) { :latest }
+
+    context "without platform info" do
+      it_behaves_like "the right artifact list info"
+    end
+
+    context "with platform info" do
+      let(:platform) { "ubuntu" }
+      let(:platform_version) { "20.04" }
+      let(:architecture) { "x86_64" }
+
+      it_behaves_like "the right artifact info"
+    end
+  end
+
+  [:current, :unstable].each do |channel|
     context "for #{channel} channel with :latest" do
-      let(:product_name) { "chef" }
+      let(:product_name) { "cinc" }
       let(:channel) { channel }
       let(:product_version) { :latest }
 
-      context "without platform info" do
-        it_behaves_like "the right artifact list info"
-      end
-
-      context "with platform info" do
-        let(:platform) { "ubuntu" }
-        let(:platform_version) { "14.04" }
-        let(:architecture) { "x86_64" }
-
-        it_behaves_like "the right artifact info"
+      it "raises ArtifactsNotFound" do
+        expect { info }.to raise_error(Mixlib::Install::Backend::ArtifactsNotFound)
       end
     end
   end
 
   context "available_versions" do
-    let(:product_name) { "chef" }
+    let(:product_name) { "cinc" }
 
-    context "with :unstable channel" do
-      let(:channel) { :unstable }
+    context "with :stable channel" do
+      let(:channel) { :stable }
 
       it "returns the list of available versions" do
-        expect(available_versions).to include("12.14.43+20160901173048")
+        expect(available_versions).to be_a(Array)
+        expect(available_versions).not_to be_empty
+        expect(available_versions.first).to match(/\d+\.\d+\.\d+/)
       end
     end
   end
 
-  context "with license_id for commercial API" do
-    let(:product_name) { "chef" }
-    let(:channel) { :stable }
-    let(:product_version) { :latest }
-    let(:license_id) { "test-license-key-789" }
-
-    let(:info_with_license) do
-      Mixlib::Install.new(
-        channel: channel,
-        product_name: product_name,
-        product_version: product_version,
-        license_id: license_id
-      )
-    end
-
-    it "accepts license_id parameter" do
-      expect(info_with_license.options.license_id).to eq license_id
-    end
-
-    it "uses commercial API backend" do
-      backend = Mixlib::Install::Backend.backend(info_with_license.options)
-      expect(backend.use_commercial_api?).to be true
-      expect(backend.endpoint).to eq Mixlib::Install::Dist::COMMERCIAL_API_ENDPOINT
-    end
-  end
-
-  context "with free- license_id for trial API" do
-    let(:product_name) { "chef" }
-    let(:channel) { :stable }
-    let(:product_version) { :latest }
-    let(:license_id) { "free-trial-license-123" }
-
-    let(:info_with_trial_license) do
-      Mixlib::Install.new(
-        channel: channel,
-        product_name: product_name,
-        product_version: product_version,
-        license_id: license_id
-      )
-    end
-
-    it "accepts license_id parameter" do
-      expect(info_with_trial_license.options.license_id).to eq license_id
-    end
-
-    it "uses trial API backend" do
-      backend = Mixlib::Install::Backend.backend(info_with_trial_license.options)
-      expect(backend.use_trial_api?).to be true
-      expect(backend.use_commercial_api?).to be false
-      expect(backend.endpoint).to eq Mixlib::Install::Dist::TRIAL_API_ENDPOINT
-    end
-  end
-
-  context "with trial- license_id for trial API" do
-    let(:product_name) { "chef" }
-    let(:channel) { :stable }
-    let(:product_version) { :latest }
-    let(:license_id) { "trial-xyz-456" }
-
-    let(:info_with_trial_license) do
-      Mixlib::Install.new(
-        channel: channel,
-        product_name: product_name,
-        product_version: product_version,
-        license_id: license_id
-      )
-    end
-
-    it "accepts license_id parameter" do
-      expect(info_with_trial_license.options.license_id).to eq license_id
-    end
-
-    it "uses trial API backend" do
-      backend = Mixlib::Install::Backend.backend(info_with_trial_license.options)
-      expect(backend.use_trial_api?).to be true
-      expect(backend.use_commercial_api?).to be false
-      expect(backend.endpoint).to eq Mixlib::Install::Dist::TRIAL_API_ENDPOINT
-    end
-  end
 end

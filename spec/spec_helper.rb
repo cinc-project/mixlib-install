@@ -55,6 +55,9 @@ VCR.configure do |config|
   # We use different set of casettes depending on the unified_backend feature
   config.cassette_library_dir = File.join(File.dirname(__FILE__), "fixtures/vcr")
 
+  # Allow cassette regeneration against updated endpoints when needed.
+  config.default_cassette_options = { record: ENV.fetch("VCR_RECORD_MODE", "once").to_sym }
+
   config.hook_into :webmock
   config.configure_rspec_metadata!
   # Options to be used during development:
@@ -69,7 +72,7 @@ VCR.configure do |config|
   # config.default_cassette_options = { :record => :all }
   #
   # Records new http calls without changing existing fixtures
-  config.default_cassette_options = { :record => :new_episodes }
+  # config.default_cassette_options = { :record => :new_episodes }
 end
 
 def with_modified_env(options, &block)

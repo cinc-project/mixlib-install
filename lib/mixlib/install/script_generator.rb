@@ -57,23 +57,18 @@ module Mixlib
       attr_accessor :omnibus_url
       attr_accessor :install_msi_url
 
-      attr_accessor :license_id
-      attr_accessor :base_url
-
       VALID_INSTALL_OPTS = %w{omnibus_url
                               endpoint
                               http_proxy
                               https_proxy
                               install_flags
                               install_msi_url
-                              license_id
                               nightlies
                               prerelease
                               project
                               root
                               use_sudo
-                              sudo_command
-                              base_url}
+                              sudo_command}
 
       def initialize(version, powershell = false, opts = {})
         @version = (version || "latest").to_s.downcase
@@ -87,7 +82,6 @@ module Mixlib
         @omnibus_url = "#{Mixlib::Install::Dist::OMNITRUCK_ENDPOINT}/install.sh"
         @use_sudo = true
         @sudo_command = "sudo -E"
-        @license_id = nil
         @project = Mixlib::Install::Dist::DEFAULT_PRODUCT.freeze
         @channel = "stable"
 
@@ -98,15 +92,6 @@ module Mixlib
                 end
 
         parse_opts(opts)
-
-        # Update root for chef-ice to use Habitat install directories
-        if @project&.casecmp("chef-ice") == 0
-          @root = if powershell
-                    "$env:systemdrive\\#{Mixlib::Install::Dist::HABITAT_WINDOWS_INSTALL_DIR}\\chef\\chef-infra-client\\*\\*"
-                  else
-                    "#{Mixlib::Install::Dist::HABITAT_LINUX_INSTALL_DIR}/chef/chef-infra-client/*/*"
-                  end
-        end
       end
 
       def install_command
@@ -129,12 +114,11 @@ module Mixlib
         flags = %w{latest true nightlies}.include?(version) ? "" : "-v #{CGI.escape(version)}"
         flags << " " << "-n" if nightlies
         flags << " " << "-p" if prerelease
-        flags << " " << "-l #{license_id}" if license_id && !license_id.to_s.empty?
         flags << " " << install_flags if install_flags
 
         [
           shell_var("chef_omnibus_root", root),
-          shell_var("chef_omnibus_url", omnibus_url_for_license),
+          shell_var("chef_omnibus_url", omnibus_url),
           shell_var("install_flags", flags.strip),
           shell_var("pretty_version", Util.pretty_version(version)),
           shell_var("sudo_sh", sudo("sh")),
@@ -157,7 +141,6 @@ module Mixlib
           shell_var("msi", "#{download_directory}\\chef-#{version}.msi"),
           shell_var("download_directory", download_directory),
         ].tap do |vars|
-          vars << shell_var("license_id", license_id) if license_id && !license_id.to_s.empty?
           if install_msi_url
             vars << shell_var("chef_msi_url", install_msi_url)
           else
@@ -222,7 +205,7 @@ module Mixlib
         Util.shell_var(name, value, powershell)
       end
 
-      # @return the correct Chef Omnitruck API metadata endpoint, based on project
+      # @return the correct Cinc Omnitruck API metadata endpoint, based on project
       def metadata_endpoint_from_project(project = nil)
         if project.nil? || project.casecmp(Mixlib::Install::Dist::DEFAULT_PRODUCT) == 0
           "metadata"
@@ -231,65 +214,14 @@ module Mixlib
         end
       end
 
-      # Returns the appropriate omnibus URL based on whether license_id is provided
-      # @return [String] the omnibus URL (commercial/trial or standard omnitruck)
-      # @api private
-      def omnibus_url_for_license
-        return omnibus_url if license_id.nil? || license_id.to_s.empty? || omnibus_url != "#{Mixlib::Install::Dist::OMNITRUCK_ENDPOINT}/install.sh"
-
-        # Use custom base_url if provided, otherwise determine from license type
-        endpoint_base = if @base_url
-                          @base_url
-                        elsif license_id.start_with?("free-", "trial-")
-                          Mixlib::Install::Dist::TRIAL_API_ENDPOINT
-                        else
-                          Mixlib::Install::Dist::COMMERCIAL_API_ENDPOINT
-                        end
-
-        # Add license_id as query param when using licensed endpoints
-        "#{endpoint_base}/install.sh?license_id=#{CGI.escape(license_id)}"
-      end
-
       def windows_metadata_url
-        # Determine if we're using commercial/trial API
-        using_licensed_api = license_id && !license_id.to_s.empty?
-
-        if using_licensed_api
-          # Commercial/trial API: <base_url>/<channel>/<project>/metadata
-          # Use custom base_url if provided, otherwise determine from license type
-          endpoint_base = if @base_url
-                            @base_url
-                          elsif license_id.start_with?("free-", "trial-")
-                            Mixlib::Install::Dist::TRIAL_API_ENDPOINT
-                          else
-                            Mixlib::Install::Dist::COMMERCIAL_API_ENDPOINT
-                          end
-
-          product_name = @project
-          url = "#{endpoint_base}/#{@channel}/#{product_name}/metadata"
-        else
-          # Omnitruck API: use base from omnibus_url + endpoint
-          base = if omnibus_url_for_license.match?(%r{/install.sh})
-                   # Ensure base URL ends with /
-                   base_url = File.dirname(omnibus_url_for_license)
-                   base_url += "/" unless base_url.end_with?("/")
-                   base_url
-                 end
-          url = "#{base}#{endpoint}"
-        end
-
-        # chef-ice uses different parameters than chef
-        if @project.casecmp("chef-ice") == 0
-          # For chef-ice: p (platform), m (machine), pm (package_manager)
-          url << "?p=windows&m=$platform_architecture&pm=msi"
-        else
-          # For chef and other products: p (platform), pv (platform_version), m (machine)
-          url << "?p=windows&m=$platform_architecture&pv=$platform_version"
-        end
+        base = omnibus_url.match?(%r{/install.sh}) ? File.dirname(omnibus_url) : omnibus_url
+        base += "/" unless base.end_with?("/")
+        url = "#{base}#{endpoint}"
+        url << "?p=windows&m=$platform_architecture&pv=$platform_version"
         url << "&v=#{CGI.escape(version)}" unless %w{latest true nightlies}.include?(version)
         url << "&prerelease=true" if prerelease
         url << "&nightlies=true" if nightlies
-        url << "&license_id=#{CGI.escape(license_id)}" if license_id && !license_id.to_s.empty?
         url
       end
 

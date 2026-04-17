@@ -2,16 +2,16 @@
 function Install-Project {
   <#
     .SYNOPSIS
-    Install a Chef Software, Inc. product
+    Install a Cinc Project product
     .DESCRIPTION
-    Install a Chef Software, Inc. product
+    Install a Cinc Project product
     .EXAMPLE
-    iex (new-object net.webclient).downloadstring('<%= base_url || "https://chefdownload-commercial.chef.io" %>/install.ps1<%= base_url && base_url.include?("chefdownload") ? "?license_id=$env:CHEF_LICENSE_KEY" : "" %>'); Install-Project -project chef -channel stable
+    iex (new-object net.webclient).downloadstring('<%= base_url || Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>/install.ps1'); Install-Project -project cinc -channel stable
 
-    Installs the latest stable version of Chef.
+    Installs the latest stable version of Cinc Client.
     .EXAMPLE
-    iex (irm '<<%= base_url || "https://chefdownload-commercial.chef.io" %>/install.ps1<%= base_url && base_url.include?("chefdownload") ? "?license_id=$env:CHEF_LICENSE_KEY" : "" %>'); Install-Project -project chef -channel current
-    Installs the latest integration build of the Chef Development Kit
+    iex (irm '<%= base_url || Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>/install.ps1'); Install-Project -project cinc -channel current
+    Installs the latest integration build of Cinc Workstation
   #>
   [cmdletbinding(SupportsShouldProcess=$true)]
   param (
@@ -59,39 +59,14 @@ function Install-Project {
     $install_strategy,
     # Base server URI for metadata endpoint
     [uri]
-    $base_server_uri,
-    # License ID for commercial API access
-    [string]
-    $license_id <%= "= '#{license_id}'" if license_id && !license_id.to_s.empty? %>
+    $base_server_uri
   )
 
-  # Use CHEF_LICENSE_KEY environment variable if license_id not provided
-  if ([string]::IsNullOrEmpty($license_id) -and -not [string]::IsNullOrEmpty($env:CHEF_LICENSE_KEY)) {
-    $license_id = $env:CHEF_LICENSE_KEY
-  }
-
-  # Check for product installation in various locations
-  if ($project -eq 'chef' -or $project -eq 'chef-ice') {
-    # For chef or chef-ice, look for chef-infra-client paths
-    $install_locations = @(
-      "$env:systemdrive\hab\pkgs\chef\chef-infra-client\*\*\bin",
-      "$env:systemdrive\<%= windows_dir %>\chef\bin"
-    )
-  } else {
-    # For other products, look for product-specific paths
-    $install_locations = @(
-      "$env:systemdrive\hab\pkgs\chef\$project\*\*\bin",
-      "$env:systemdrive\<%= windows_dir %>\$project\bin"
-    )
-  }
-  foreach ($path in $install_locations) {
-    $resolved = Get-Item $path -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($resolved -and (Test-Path $resolved.FullName -PathType Container) -and ($install_strategy -eq 'once')) {
-      Write-Host "$project installation detected at $($resolved.FullName)"
-      Write-Host "install_strategy set to 'once'"
-      Write-Host "Nothing to install"
-      exit
-    }
+  if (($install_strategy -eq 'once') -and (Test-Path "$env:systemdrive\<%= windows_dir %>\$project\bin" -PathType Container)) {
+    Write-Host "$project installation detected"
+    Write-Host "install_strategy set to 'once'"
+    Write-Host "Nothing to install"
+    exit
   }
 
   # Set http_proxy as env var
@@ -106,7 +81,7 @@ function Install-Project {
     $download_url = $download_url_override
     $sha256 = $checksum
   } else {
-    $package_metadata = Get-ProjectMetadata -project $project -channel $channel -version $version -prerelease:$prerelease -nightlies:$nightlies -architecture $architecture -base_server_uri $base_server_uri -license_id $license_id
+    $package_metadata = Get-ProjectMetadata -project $project -channel $channel -version $version -prerelease:$prerelease -nightlies:$nightlies -architecture $architecture -base_server_uri $base_server_uri
     $download_url = $package_metadata.url
     $sha256 = $package_metadata.sha256
   }
@@ -119,19 +94,7 @@ function Install-Project {
     }
   }
   else {
-    # Extract filename from URL path (without query params)
-    $urlPath = (([System.Uri]$download_url).AbsolutePath -split '/')[-1]
-
-    # Check if URL path has a package file extension
-    $hasPackageExtension = $urlPath -match '\.(msi|appx|pkg|dmg|rpm|deb)$'
-
-    # For licensed downloads or URLs without package extensions, we won't know the filename until after download
-    if (-not [string]::IsNullOrEmpty($license_id) -or -not $hasPackageExtension) {
-      $filename = "chef-download-temp-$PID"
-      Write-Host "Using temporary filename for content-disposition download: $filename"
-    } else {
-      $filename = $urlPath
-    }
+    $filename = ([System.Uri]$download_url).AbsolutePath.split('/')[-1]
   }
   Write-Host "Download directory: $download_directory"
   Write-Host "Filename: $filename"
@@ -169,28 +132,7 @@ function Install-Project {
   if (-not ($cached_installer_available)) {
     if ($pscmdlet.ShouldProcess("$($download_url)", "Download $project")) {
       Write-Host "Downloading $project from $($download_url) to $download_destination."
-      $download_result = Get-WebContent $download_url -filepath $download_destination
-
-      # Extract actual filename from Content-Disposition if it was a temp filename
-      if ($filename -like "chef-download-temp-*" -and $download_result -and $download_result.Filename) {
-        $actual_filename = $download_result.Filename
-        Write-Host "Extracted filename from Content-Disposition: $actual_filename"
-
-        $final_destination = join-path $download_directory $actual_filename
-
-        # Move temp file to final location with correct name
-        if ($download_destination -ne $final_destination) {
-          Write-Host "Moving to final location: $final_destination"
-          if (test-path $final_destination) {
-            remove-item $final_destination -force
-          }
-          move-item $download_destination $final_destination -force
-          $download_destination = $final_destination
-        }
-      } elseif ($filename -like "chef-download-temp-*") {
-        Write-Host "Warning: Could not extract filename from Content-Disposition header."
-        Write-Host "Using temporary filename. Package installation may fail."
-      }
+      Get-WebContent $download_url -filepath $download_destination
     }
   }
 

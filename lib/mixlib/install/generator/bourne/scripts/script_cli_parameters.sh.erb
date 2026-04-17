@@ -12,15 +12,13 @@
 # $install_strategy: Method of package installations. default strategy is to always install upon exec. Set to "once" to skip if project is installed
 # $download_url_override: Install package downloaded from a direct URL.
 # $checksum: SHA256 for download_url_override file (optional)
-# $license_id: License ID for commercial API access (optional)
 ############
 
 # Defaults
 channel="stable"
 project="<%= default_product %>"
-<%= "license_id=\"#{license_id}\"" if license_id && !license_id.to_s.empty? %>
 
-while getopts pnv:b:c:f:P:d:s:l:a:L: opt
+while getopts pnv:b:c:f:P:d:s:l:a: opt
 do
   case "$opt" in
 
@@ -35,17 +33,11 @@ do
     s)  install_strategy="$OPTARG";;
     l)  download_url_override="$OPTARG";;
     a)  checksum="$OPTARG";;
-    L)  license_id="$OPTARG";;
     \?)   # unknown flag
       echo >&2 \
-      "usage: $0 [-P project] [-b base_api_url] [-c release_channel] [-v version] [-f filename | -d download_dir] [-s install_strategy] [-l download_url_override] [-a checksum] [-L license_id]"
+      "usage: $0 [-P project] [-b base_api_url] [-c release_channel] [-v version] [-f filename | -d download_dir] [-s install_strategy] [-l download_url_override] [-a checksum]"
       exit 1;;
   esac
 done
 
 shift `expr $OPTIND - 1`
-
-# Use CHEF_LICENSE_KEY environment variable if license_id not provided via CLI
-if [ -z "$license_id" ] && [ -n "$CHEF_LICENSE_KEY" ]; then
-  license_id="$CHEF_LICENSE_KEY"
-fi

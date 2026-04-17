@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://packages.cinc.sh/api/v1/stable/cinc/99.99.99/artifacts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - mixlib-install/3.16.1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 17 Apr 2026 23:09:36 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '263'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>404 Not Found</title>
+        </head><body>
+        <h1>Not Found</h1>
+        <p>The requested URL was not found on this server.</p>
+        <hr>
+        <address>Apache Server at packages.cinc.sh Port 443</address>
+        </body></html>
+    http_version:
+  recorded_at: Fri, 17 Apr 2026 23:09:36 GMT
+recorded_with: VCR 5.0.0

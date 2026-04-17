@@ -22,7 +22,7 @@ require "mixlib/install/options"
 describe Mixlib::Install::Generator::Base do
   let(:options) do
     Mixlib::Install::Options.new(
-      product_name: "chef",
+      product_name: "cinc",
       channel: :stable,
       product_version: "17.0.0"
     )
@@ -75,42 +75,18 @@ describe Mixlib::Install::Generator::Base do
       end
 
       it "renders the ERB template with context" do
-        context = { project_name: "chef", base_url: "https://omnitruck.chef.io" }
+        context = { project_name: "cinc", base_url: "https://omnitruck.cinc.sh" }
         script = test_generator_class.get_script("test_script.sh", context)
 
-        expect(script).to include("project=chef")
-        expect(script).to include("url=https://omnitruck.chef.io")
+        expect(script).to include("project=cinc")
+        expect(script).to include("url=https://omnitruck.cinc.sh")
       end
 
       it "uses default values for missing context" do
         script = test_generator_class.get_script("test_script.sh", {})
 
-        expect(script).to include("project=Chef")
+        expect(script).to include("project=Cinc")
         # base_url should be empty when not provided - scripts determine URL at runtime
-        expect(script).to include("url=\n")
-      end
-
-      it "does not set base_url from license_id alone" do
-        context = { license_id: "test-commercial-key" }
-        script = test_generator_class.get_script("test_script.sh", context)
-
-        # base_url should be empty - license_id doesn't auto-set it in context
-        expect(script).to include("url=\n")
-      end
-
-      it "does not set base_url from free- license_id alone" do
-        context = { license_id: "free-trial-123" }
-        script = test_generator_class.get_script("test_script.sh", context)
-
-        # base_url should be empty - license_id doesn't auto-set it in context
-        expect(script).to include("url=\n")
-      end
-
-      it "does not set base_url from trial- license_id alone" do
-        context = { license_id: "trial-xyz-456" }
-        script = test_generator_class.get_script("test_script.sh", context)
-
-        # base_url should be empty - license_id doesn't auto-set it in context
         expect(script).to include("url=\n")
       end
     end
@@ -169,18 +145,11 @@ describe Mixlib::Install::Generator::Base do
         FileUtils.rm_rf(@temp_dir) if @temp_dir
       end
 
-      it "uses habitat directory for chef-ice" do
-        context = { default_product: "chef-ice" }
+      it "uses omnibus directory for cinc" do
+        context = { default_product: "cinc" }
         script = test_generator_class.get_script("windows_dir.sh", context)
 
-        expect(script).to include("dir=hab\\pkgs")
-      end
-
-      it "uses omnibus directory for chef" do
-        context = { default_product: "chef" }
-        script = test_generator_class.get_script("windows_dir.sh", context)
-
-        expect(script).to include("dir=opscode")
+        expect(script).to include("dir=cinc-project")
       end
     end
   end
@@ -249,15 +218,15 @@ describe Mixlib::Install::Generator::Base do
     it "provides all default context values" do
       script = test_generator_class.get_script("defaults.sh", {})
 
-      expect(script).to include("project=Chef")
+      expect(script).to include("project=Cinc")
       # base_url should be empty when not provided - scripts determine URL at runtime
       expect(script).to include("url=\n")
-      expect(script).to include("product=chef")
-      expect(script).to include("bug=https://github.com/chef/omnitruck/issues/new")
-      expect(script).to include("support=https://www.chef.io/support/tickets")
-      expect(script).to include("resources=https://www.chef.io/support")
-      expect(script).to include("macos=chef_software")
-      expect(script).to include("windows=opscode")
+      expect(script).to include("product=cinc")
+      expect(script).to include("bug=https://gitlab.com/cinc-project/mixlib-install/issues")
+      expect(script).to include("support=https://gitlab.com/groups/cinc-project/-/issues")
+      expect(script).to include("resources=https://www.cinc.sh/support")
+      expect(script).to include("macos=cinc_project")
+      expect(script).to include("windows=cinc-project")
     end
   end
 end

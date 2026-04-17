@@ -23,7 +23,7 @@ require "mixlib/install/artifact_info"
 
 describe Mixlib::Install::Backend::Base do
   let(:channel) { :stable }
-  let(:product_name) { "chef" }
+  let(:product_name) { "cinc" }
   let(:product_version) { "17.0.0" }
   let(:platform) { "ubuntu" }
   let(:platform_version) { "20.04" }
@@ -175,7 +175,7 @@ describe Mixlib::Install::Backend::Base do
 
       it "includes error details in exception message" do
         expect { backend.filter_artifacts(artifacts) }.to raise_error do |error|
-          expect(error.message).to include("product name: chef")
+          expect(error.message).to include("product name: cinc")
           expect(error.message).to include("channel: stable")
           expect(error.message).to include("version: 17.0.0")
           expect(error.message).to include("platform: freebsd")

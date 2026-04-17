@@ -1,0 +1,959 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://packages.cinc.sh/api/v1/stable/cinc-server/versions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - mixlib-install/3.16.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 17 Apr 2026 23:09:37 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Sun, 01 Mar 2026 02:43:45 GMT
+      Etag:
+      - '"1b6f-64bed70661c0b"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '7023'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "results": [
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "14.14.1"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "14.14.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "14.15.10"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "14.15.10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "14.15.9"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "14.15.9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "14.16.19"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "14.16.19"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.0.9"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.0.9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.1.7"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.1.7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.12"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.12"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.21"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.21"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.27"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.27"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.33"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.33"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.63"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.63"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.66"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.66"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.83"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.83"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.91"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.3.2"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.3.2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.4.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.4.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.5.1"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.5.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.6.1"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.6.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.6.2"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.6.2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.7.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.7.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.8.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.8.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.9.12"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.9.12"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.9.20"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.9.20"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.9.27"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.9.27"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.9.38"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.9.38"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 17 Apr 2026 23:09:37 GMT
+- request:
+    method: get
+    uri: https://packages.cinc.sh/api/v1/stable/cinc-server/15.10.91/artifacts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - mixlib-install/3.16.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 17 Apr 2026 23:09:37 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Sun, 01 Mar 2026 02:43:45 GMT
+      Etag:
+      - '"2af0-64bed70662f93"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '10992'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "results": [
+            {
+              "name": "cinc-server-core-15.10.91-1.amazon2023.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "e87958830b9244368bdfab6ab8eeab0f"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "amazon"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "2023"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "721bb48730119d71b009d50ffff5547092e1a82e"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "89c8bd8a9ad0d43cd29a95a78a0d7d0ef89464fffe0333c785312bdb8fcd3902"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core_15.10.91-1_amd64.deb",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "06969cc46791f721d56a50a8adc1937b"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "debian"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "12"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "bf83ce4f1ad7a1fe9e12562b2f6c638e5e1e1865"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "01768fbfd301529afa727c2710a8ae167f1840fd7e3b82e8d1d1bbc1de27ac33"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core_15.10.91-1_amd64.deb",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "6209d552f19cdeb69f7783ab87fad3bc"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "debian"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "13"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "06c03aa82de6a754bfef52e31859300e3cc9e883"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "a0002ba412dbd8dc9fc660cdc601eadf5fcd5c618a19b9c196c518202641c3cc"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core-15.10.91-1.el10.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "b9056eff6139bdcfc383ac1761ae44f3"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "el"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "10"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "884c04fbcff0b0c9178e3458c37363fa7bc2a138"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "6b37ee646a1ebb0360b507faf21c0f842db35db4679f326e65fe5c0581d7d0cb"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core-15.10.91-1.el8.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "5620227c8243cb2a03e5d7f721c61969"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "el"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "8"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "5b5668f5dbc6ccc619115503d59db9043eb53bf2"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "43e22496bb73f2c4cf88324964d078e4b9b4df5a276411b7a038b08ae3befa11"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core-15.10.91-1.el9.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "27c80e96f621f3991253ca560f1c59dc"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "el"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "9"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "64840780f71b9433ee2015e38ed6dd8886465114"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "be63ba141ca028dee815d838a1cbb10b18beeb7d670552256e6144c074b8177a"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core-15.10.91-1.rocky9.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "b5c64fd1e07951c0bc384f96abc94f1d"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "rocky"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "9"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "d2ef4fd17a3742b1f10b89fcf0a323a69ae7e70e"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "eec37cb17c3498e97d1820a855a134c461c4f1e4ece35b3c9612c7d325532dc4"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core-15.10.91-1.sles15.x86_64.rpm",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "61c613c385479afd14bae09e69b0ef5b"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "sles"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "15"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "fc02edef543b6f49498b5c5033ee46a69ef80581"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "102880cadce70075b037fcddcc2215b89e1a397e54e7331513f5acbbfb7cf66a"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core_15.10.91-1_amd64.deb",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "f85b479d8f16d17d19e88d1764ab0f3a"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "ubuntu"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "20.04"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "e293f179495b6157c2db722e66031d1c0ef22711"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "8679b767e151ad877dba65ea5f3101450c35d8fbec78bcc94f44c55ef744c8e0"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core_15.10.91-1_amd64.deb",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "ea3fc44d290b8a00ccdb7612e4689663"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "ubuntu"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "22.04"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "c42d42820e7243bb9bd435e874ea2b5b708e426a"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "5d284dea4dc284b3499cd1472a60630de11d2a52d5e467ab3547d66d28bf8703"
+                }
+              ]
+            },
+            {
+              "name": "cinc-server-core_15.10.91-1_amd64.deb",
+              "properties": [
+                {
+                  "key": "omnibus.project",
+                  "value": "cinc-server"
+                },
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.91"
+                },
+                {
+                  "key": "omnibus.architecture",
+                  "value": "x86_64"
+                },
+                {
+                  "key": "omnibus.license",
+                  "value": "Apache-2.0"
+                },
+                {
+                  "key": "omnibus.md5",
+                  "value": "66a6560c73a86fde096ef22cf39fe325"
+                },
+                {
+                  "key": "omnibus.platform",
+                  "value": "ubuntu"
+                },
+                {
+                  "key": "omnibus.platform_version",
+                  "value": "24.04"
+                },
+                {
+                  "key": "omnibus.sha1",
+                  "value": "864b559499babbaefbe6b96f9db97a60bafdd500"
+                },
+                {
+                  "key": "omnibus.sha256",
+                  "value": "2db525f36d1326eef99836c791f2fadbecd30e1196d534f730de40a24352fad4"
+                }
+              ]
+            }
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 17 Apr 2026 23:09:37 GMT
+recorded_with: VCR 5.0.0

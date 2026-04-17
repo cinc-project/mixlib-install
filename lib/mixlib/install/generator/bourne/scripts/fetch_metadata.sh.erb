@@ -4,11 +4,11 @@
 #   installed.
 #
 #  EXAMPLE
-#    curl -L '<%= base_url || "https://chefdownload-commercial.chef.io" %>/install.sh<%= base_url && base_url.include?("chefdownload") ? "?license_id=$CHEF_LICENSE_KEY" : "" %>' | sudo bash -s --  -P chef -c stable
+#    curl -L '<%= base_url || Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>/install.sh' | sudo bash -s --  -P cinc -c stable
 #
-# Gets the download url and SHA256 checksum for the latest stable release of Chef Workstation.
+# Gets the download url and SHA256 checksum for the latest stable release of Cinc Workstation.
 #   EXAMPLE
-#     curl -L '<%= base_url || "https://chefdownload-commercial.chef.io" %>/install.sh<%= base_url && base_url.include?("chefdownload") ? "?license_id=$CHEF_LICENSE_KEY" : "" %>' | sudo bash -s --  -P chef-workstation -c stable
+#     curl -L '<%= base_url || Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>/install.sh' | sudo bash -s --  -P cinc-workstation -c stable
 #
 # Inputs:
 # $base_api_url:
@@ -25,46 +25,6 @@
 # $sha256:
 ############
 
-# Determine package manager based on platform for commercial API
-determine_package_manager() {
-  case "$platform" in
-    el|centos|rhel|fedora|amazon|rocky|opensuse*|sles|scientific)
-      echo "rpm"
-      ;;
-    debian|ubuntu|linuxmint|raspbian)
-      echo "deb"
-      ;;
-    mac_os_x|macos|solaris*|smartos|freebsd|aix|omnios)
-      echo "tar"
-      ;;
-    *)
-      echo "tar"
-      ;;
-  esac
-}
-
-# Normalize platform name for commercial API
-normalize_platform_name() {
-  case "$platform" in
-    el|centos|rhel|fedora|rocky|scientific)
-      echo "linux"
-      ;;
-    mac_os_x|macos)
-      echo "macos"
-      ;;
-    debian|ubuntu|linuxmint|raspbian)
-      echo "linux"
-      ;;
-    freebsd|aix|solaris*|smartos|omnios)
-      echo "unix"
-      ;;
-    *)
-      # For anything else, use linux as default
-      echo "linux"
-      ;;
-  esac
-}
-
 if [ -z "$download_url_override" ]; then
   echo "Getting information for $project $channel $version for $platform..."
 
@@ -76,40 +36,11 @@ if [ -z "$download_url_override" ]; then
   fi
 <% end %>
 
-  # Use commercial API if license_id is provided, otherwise use omnitruck
   if [ -z "$base_api_url" ]; then
-    if [ -n "$license_id" ]; then
-      # Check if license_id starts with 'free-' or 'trial-' for trial API
-      case "$license_id" in
-        free-*|trial-*)
-          # Trial API endpoint
-          base_api_url="<%= Mixlib::Install::Dist::TRIAL_API_ENDPOINT %>"
-          ;;
-        *)
-          # Commercial API endpoint
-          base_api_url="<%= Mixlib::Install::Dist::COMMERCIAL_API_ENDPOINT %>"
-          ;;
-      esac
-    else
-      # Omnitruck endpoint
-      base_api_url="<%= Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>"
-    fi
+    base_api_url="<%= Mixlib::Install::Dist::OMNITRUCK_ENDPOINT %>"
   fi
 
-  # For chef-ice product, add platform (p), machine (m), and package_manager (pm) parameters
-  if [ -n "$license_id" ]; then
-    if [ "$project" = "chef-ice" ]; then
-      package_manager=$(determine_package_manager)
-      platform_param=$(normalize_platform_name)
-      metadata_url="$base_api_url/$channel/$project/metadata?license_id=$license_id&v=$version&m=$machine&p=$platform_param&pm=$package_manager"
-    else
-      # For other products, use standard parameters
-      metadata_url="$base_api_url/$channel/$project/metadata?license_id=$license_id&v=$version&p=$platform&pv=$platform_version&m=$machine"
-    fi
-  else
-    # Omnitruck URL parameters without license_id
-    metadata_url="$base_api_url/$channel/$project/metadata?v=$version&p=$platform&pv=$platform_version&m=$machine"
-  fi
+  metadata_url="$base_api_url/$channel/$project/metadata?v=$version&p=$platform&pv=$platform_version&m=$machine"
 
   do_download "$metadata_url" "$metadata_filename"
 
@@ -117,41 +48,17 @@ if [ -z "$download_url_override" ]; then
 
   echo ""
 
-  # Commercial and trial APIs return JSON, omnitruck returns text format
-  if [ -n "$license_id" ]; then
-    # Parse JSON response from commercial/trial API
-    # Check if response looks like JSON
-    if grep -q '^{' "$metadata_filename" 2>/dev/null; then
-      # Extract url and sha256 from JSON
-      # Try using sed for simple JSON parsing (more portable than jq)
-      download_url=`sed -n 's/.*"url":"\([^"]*\)".*/\1/p' "$metadata_filename"`
-      sha256=`sed -n 's/.*"sha256":"\([^"]*\)".*/\1/p' "$metadata_filename"`
-
-      if [ -n "$download_url" ] && [ -n "$sha256" ]; then
-        echo "downloaded metadata file looks valid..."
-      else
-        echo "downloaded metadata file is corrupted or an uncaught error was encountered in downloading the file..."
-        report_bug
-        exit 1
-      fi
-    else
-      echo "downloaded metadata file is corrupted or an uncaught error was encountered in downloading the file..."
-      report_bug
-      exit 1
-    fi
+  # Parse text response from omnitruck
+  if grep '^url' $metadata_filename > /dev/null && grep '^sha256' $metadata_filename > /dev/null; then
+    echo "downloaded metadata file looks valid..."
+    download_url=`awk '$1 == "url" { print $2 }' "$metadata_filename"`
+    sha256=`awk '$1 == "sha256" { print $2 }' "$metadata_filename"`
   else
-    # Parse text response from omnitruck
-    if grep '^url' $metadata_filename > /dev/null && grep '^sha256' $metadata_filename > /dev/null; then
-      echo "downloaded metadata file looks valid..."
-      download_url=`awk '$1 == "url" { print $2 }' "$metadata_filename"`
-      sha256=`awk '$1 == "sha256" { print $2 }' "$metadata_filename"`
-    else
-      echo "downloaded metadata file is corrupted or an uncaught error was encountered in downloading the file..."
-      # this generally means one of the download methods downloaded a 404 or something like that and then reported a successful exit code,
-      # and this should be fixed in the function that was doing the download.
-      report_bug
-      exit 1
-    fi
+    echo "downloaded metadata file is corrupted or an uncaught error was encountered in downloading the file..."
+    # this generally means one of the download methods downloaded a 404 or something like that and then reported a successful exit code,
+    # and this should be fixed in the function that was doing the download.
+    report_bug
+    exit 1
   fi
 else
   download_url=$download_url_override

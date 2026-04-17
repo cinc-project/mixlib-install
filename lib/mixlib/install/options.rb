@@ -64,7 +64,6 @@ module Mixlib
         :include_metadata,
         :user_agent_headers,
         :install_command_options,
-        :license_id,
         :base_url,
       ]
 
@@ -91,8 +90,6 @@ module Mixlib
         resolve_platform_version_compatibility_mode!
 
         map_windows_versions!
-
-        enforce_trial_api_defaults!
 
         validate!
       end
@@ -189,7 +186,6 @@ module Mixlib
           platform_version_compatibility_mode: false,
           product_version: :latest,
           include_metadata: false,
-          license_id: ENV["CHEF_LICENSE_KEY"],
         }
       end
 
@@ -262,42 +258,6 @@ Must provide platform (-p), platform version (-l) and architecture (-a) when spe
         items.all? || items.compact.empty?
       end
 
-      # Trial API only supports stable channel and latest version
-      # If using trial API with other settings, default them and warn the user
-      def enforce_trial_api_defaults!
-        return unless use_trial_api?
-
-        original_channel = channel
-        original_version = product_version
-
-        # Force stable channel for trial API
-        if channel != :stable
-          options[:channel] = :stable
-          warn "WARNING: Trial API only supports 'stable' channel. Changing from '#{original_channel}' to 'stable'."
-        end
-
-        # Force latest version for trial API
-        if product_version != :latest && product_version.to_sym != :latest
-          options[:product_version] = :latest
-          warn "WARNING: Trial API only supports 'latest' version. Changing from '#{original_version}' to 'latest'."
-        end
-      end
-
-      def use_trial_api?
-        license_id = options[:license_id] || options["license_id"] || default_options[:license_id]
-        Mixlib::Install::Dist.trial_license?(license_id)
-      end
-
-      # Validate that licensed API usage conforms to API restrictions
-      # This is informational only - enforce_trial_api_defaults! already handles corrections
-      def validate_licensed_api_restrictions
-        return unless license_id && !license_id.to_s.empty?
-
-        if use_trial_api?
-          # These are enforced by enforce_trial_api_defaults! but we can add extra validation here if needed
-          # Currently no additional validation needed since defaults are auto-applied
-        end
-      end
     end
   end
 end

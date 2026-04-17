@@ -1,0 +1,1760 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://packages.cinc.sh/api/v1/stable/cinc/versions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - mixlib-install/3.16.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 17 Apr 2026 23:09:37 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Fri, 20 Mar 2026 17:23:45 GMT
+      Etag:
+      - '"6eab-64d77f27dd9db"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '28331'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "results": [
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.1.36"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.1.36"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.10.12"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.10.12"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.11.3"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.11.3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.11.8"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.11.8"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.12.22"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.12.22"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.13.8"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.13.8"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.14.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.14.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.15.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.15.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.15.1"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.15.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.16.7"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.16.7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.17.4"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.17.4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.2.20"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.2.20"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.3.14"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.3.14"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.4.45"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.4.45"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.5.15"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.5.15"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.5.9"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.5.9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.6.10"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.6.10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.7.31"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.7.31"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.7.32"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.7.32"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.8.23"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.8.23"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "15.9.17"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "15.9.17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.0.257"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.0.257"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.0.275"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.0.275"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.0.287"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.0.287"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.1.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.1.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.1.16"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.1.16"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.1.17"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.1.17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.10.17"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.10.17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.10.8"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.10.8"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.11.7"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.11.7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.12.3"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.12.3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.13.16"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.13.16"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.14.1"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.14.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.15.22"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.15.22"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.16.13"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.16.13"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.17.18"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.17.18"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.17.39"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.17.39"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.17.4"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.17.4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.17.51"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.17.51"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.18.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.18.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.18.30"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.18.30"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.2.44"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.2.44"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.2.50"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.2.50"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.2.73"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.2.73"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.3.38"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.3.38"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.3.45"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.3.45"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.4.35"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.4.35"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.4.38"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.4.38"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.4.41"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.4.41"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.5.64"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.5.64"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.5.77"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.5.77"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.6.14"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.6.14"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.7.61"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.7.61"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.8.14"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.8.14"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.9.16"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.9.16"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.9.17"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.9.17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.9.20"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.9.20"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.9.29"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.9.29"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "16.9.32"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "16.9.32"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.0.242"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.0.242"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.1.35"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.1.35"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.114"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.114"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.122"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.122"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.163"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.163"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.165"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.165"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.10.95"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.10.95"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.2.29"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.2.29"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.3.48"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.3.48"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.4.25"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.4.25"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.4.38"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.4.38"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.5.22"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.5.22"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.6.18"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.6.18"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.7.22"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.7.22"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.7.29"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.7.29"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.8.25"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.8.25"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.9.18"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.9.18"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.9.26"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.9.26"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.9.42"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.9.42"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.9.46"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.9.46"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "17.9.52"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "17.9.52"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.0.169"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.0.169"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.0.185"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.0.185"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.1.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.1.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.10.17"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.10.17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.2.7"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.2.7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.3.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.3.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.4.12"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.4.12"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.4.2"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.4.2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.5.0"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.5.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.6.2"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.6.2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.7.10"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.7.10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.7.3"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.7.3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.7.6"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.7.6"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.8.11"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.8.11"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.8.46"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.8.46"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.8.54"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.8.54"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.8.9"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.8.9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "18.9.4"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "18.9.4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "19.1.164"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "19.1.164"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "properties": [
+                {
+                  "key": "omnibus.version",
+                  "value": "19.2.12"
+                }
+              ],
+              "artifacts": [
+                {
+                  "builds": [
+                    {
+                      "build.number": "19.2.12"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 17 Apr 2026 23:09:37 GMT
+recorded_with: VCR 5.0.0
